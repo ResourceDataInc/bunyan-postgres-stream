@@ -28,7 +28,7 @@ class LogStream extends Writable {
     this.tableName = options.tableName
   }
 
-  _writeKnex (chunk, env, cb) {
+  _writeKnex (chunk, enc, cb) {
     const content = JSON.parse(chunk.toString())
     this.knex
       .insert({
