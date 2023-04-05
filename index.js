@@ -9,6 +9,9 @@ class LogStream extends Writable {
       throw new Error('Invalid bunyan-postgres stream configuration')
     }
 
+    // This if statement is rather fragile. If you are getting a "_write() not implemented"
+    // error, this is probably the problem. Make sure that this condition is true if the
+    // connection is a knex connnection.
     if (options.connection.client && options.connection.name === 'knex') {
       this.knex = options.connection
       this._write = this._writeKnex
