@@ -9,7 +9,7 @@ class LogStream extends Writable {
       throw new Error('Invalid bunyan-postgres stream configuration')
     }
 
-    if (options.connection.client && options.connection.client.makeKnex) {
+    if (options.connection.client && options.connection.name === 'knex') {
       this.knex = options.connection
       this._write = this._writeKnex
     }
